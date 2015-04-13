@@ -24,20 +24,20 @@ public class MyArrayAdapter extends ArrayAdapter<Integer> {
     private static final int ROTATION_TIME_180 = ROTATION_TIME_90 * 2;
 
     private final Activity context;
-    private final Integer[] imagesId;
+    private Integer[] imagesId;
     private ListView listView;
     private int degree = 0;
     private int itemId;
-    private int imegId;
+    private int itemImegId;
 
     public MyArrayAdapter(Activity context, Integer[] images, ListView listView,
-                          int itemId, int imegId) {
+                          int itemId, int itemImegId) {
         super(context, itemId, images);
         this.itemId = itemId;
         this.context = context;
         this.imagesId = images.clone();
         this.listView = listView;
-        this.imegId = imegId;
+        this.itemImegId = itemImegId;
     }
 
     @Override
@@ -46,15 +46,15 @@ public class MyArrayAdapter extends ArrayAdapter<Integer> {
             LayoutInflater inflater = context.getLayoutInflater();
             convertView = inflater.inflate(itemId, null, true);
             Log.d(LOG_TAG, "new list item");
-        } else Log.d(LOG_TAG, "old list item");
+       } else Log.d(LOG_TAG, "old list item");
 
-        ((ImageView) ((LinearLayout) convertView).
-                findViewById(imegId)).setImageResource(imagesId[position]);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+       ((ImageView) ((LinearLayout) convertView).
+                findViewById(itemImegId)).setImageResource(imagesId[position]);
+       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             ((ImageView) ((LinearLayout) convertView).
-                    findViewById(imegId)).setRotation(degree);
-        }
-        return convertView;
+                    findViewById(itemImegId)).setRotation(degree);
+       }
+       return convertView;
     }
 
     /**
@@ -72,17 +72,23 @@ public class MyArrayAdapter extends ArrayAdapter<Integer> {
             return;
         }
         imageView = ((ImageView) ((LinearLayout) listView.getChildAt(0)).
-                findViewById(imegId));
+                findViewById(itemImegId));
         Animation anim = getAnim(degree, currentDegree, imageView.getPivotX(),
                 imageView.getPivotY());
 
         for(int j = 0; j < listView.getChildCount(); j++) {
             imageView =  ((ImageView) ((LinearLayout) listView.getChildAt(j)).
-                    findViewById(imegId));
+                    findViewById(itemImegId));
             imageView.setRotation(currentDegree);
             imageView.startAnimation(anim);
         }
         degree = currentDegree;
+    }
+
+    public void changeImages(Integer image) {
+        Integer[] array = new Integer[1];
+        array[0] = image;
+        imagesId = array;
     }
 
     private Animation getAnim(int degree, int currDegree, float pivotX, float pivotY) {

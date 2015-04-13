@@ -5,6 +5,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 /**
@@ -15,8 +17,11 @@ import android.widget.ListView;
 public class MyButtonImage extends ListView {
     private final String LOG_TAG = MyButtonImage.class.getName();
     private int imageId = -1;
+    private int itemImageId;
     private MyArrayAdapter myArrayAdapter;
     private OnClickListener onClickListener;
+
+    Activity context;
 
     public MyButtonImage(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -30,8 +35,20 @@ public class MyButtonImage extends ListView {
         });
     }
 
+    public void setImage(int imageId) {
+        if (myArrayAdapter != null) {
+            this.imageId = imageId;
+            myArrayAdapter.changeImages(imageId);
+            ((ImageView) ((LinearLayout) this.getChildAt(0)).
+                    findViewById(itemImageId)).setImageResource(imageId);
+        }
+    }
+
     public void setImage(int imageId, Activity context, int itemId, int itemImageId) {
         if (this.imageId != imageId) {
+            this.context = context;
+
+            this.itemImageId = itemImageId;
             this.imageId = imageId;
             if (myArrayAdapter == null) {
                 Integer[] arrayImageId = new Integer[1];
@@ -39,10 +56,6 @@ public class MyButtonImage extends ListView {
                 myArrayAdapter = new MyArrayAdapter(context, arrayImageId,
                         this, itemId, itemImageId);
                 this.setAdapter(myArrayAdapter);
-            } else {
-                myArrayAdapter.clear();
-                myArrayAdapter.add(imageId);
-                myArrayAdapter.notifyDataSetChanged();
             }
         }
     }
