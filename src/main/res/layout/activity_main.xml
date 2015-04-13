@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_material_dark"
+    tools:context=".MainActivity"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:weightSum="1"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout">
+
+        <frontend.MyButtonImage
+            android:layout_width="@dimen/settings_button_item_size"
+            android:layout_height="@dimen/settings_button_item_size"
+            android:id="@+id/button_camera_rotetion"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="20dp"
+            android:choiceMode="singleChoice" />
+
+        <ListView
+            android:layout_width="@dimen/settings_button_item_size"
+            android:layout_height="wrap_content"
+            android:id="@+id/list_settings"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:choiceMode="singleChoice"
+            android:dividerHeight="15dp"
+            android:divider="@null" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageShuttle"
+        android:src="@drawable/shuttle"
+        android:layout_toRightOf="@+id/linearLayout"
+        android:layout_toLeftOf="@+id/button_top"
+        android:layout_toStartOf="@+id/button_top"
+        android:layout_alignParentBottom="true" />
+
+    <frontend.MyButtonImage
+        android:layout_width="@dimen/navigate_button_size"
+        android:layout_height="@dimen/navigate_button_size"
+        android:id="@+id/button_top"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="5dp"
+        android:choiceMode="singleChoice" />
+
+    <frontend.MyButtonImage
+        android:layout_width="@dimen/navigate_button_size"
+        android:layout_height="@dimen/navigate_button_size"
+        android:id="@+id/button_center"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="5dp"
+        android:choiceMode="singleChoice" />
+
+    <frontend.MyButtonImage
+        android:layout_width="@dimen/navigate_button_size"
+        android:layout_height="@dimen/navigate_button_size"
+        android:id="@+id/button_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="5dp"
+        android:choiceMode="singleChoice" />
+
+</RelativeLayout>
