@@ -1,9 +1,11 @@
-package com.task.krabiysok.liferegistrator;
+package service;
 
 import android.content.ComponentName;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.util.Log;
+
+import com.task.krabiysok.liferegistrator.*;
 
 /**
  * Created by KrabiySok on 4/4/2015.
@@ -11,7 +13,7 @@ import android.util.Log;
 public class CameraConnector implements ServiceConnection {
     private static final String LOG_TAG = CameraConnector.class.getName();
     private boolean status;
-    private CameraService cameraService;
+    private com.task.krabiysok.liferegistrator.CameraService cameraService;
 
     public void onServiceConnected(ComponentName name, IBinder binder) {
         Log.d(LOG_TAG, "CameraConnector onServiceConnected");
@@ -30,7 +32,7 @@ public class CameraConnector implements ServiceConnection {
         return status;
     }
 
-    public CameraService getCameraService() {
+    public com.task.krabiysok.liferegistrator.CameraService getCameraService() {
         Log.d(LOG_TAG, "CameraConnector getCameraService");
         return cameraService;
     }
